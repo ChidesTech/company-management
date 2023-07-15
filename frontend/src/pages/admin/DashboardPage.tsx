@@ -160,12 +160,12 @@ export default function DashboardPage() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="mt-4">
+                            {/* <div className="mt-4">
                                 <AddRecordModal
                                     getRecords={getRecords}
                                 ></AddRecordModal>
                             </div>
-
+ */}
 
                         </div>
 

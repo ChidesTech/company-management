@@ -47,11 +47,11 @@ export default function LoginPage() {
                         
                         <div className="mb-3 text-start"><label className="form-label" htmlFor="email">Email address</label>
                             <div className="form-icon-container">
-                                <input value={email} onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)} className="form-control form-icon-input" id="email" type="email" placeholder="Enter Email Address" /><span className="fas fa-user text-900 fs--1 form-icon" /></div>
+                                <input value={email} onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)} className="form-control form-icon-input py-3" id="email" type="email" placeholder="Enter Email Address" /><span className="fas fa-user text-900 fs--1 form-icon" /></div>
                         </div>
                         <div className="mb-3 text-start"><label className="form-label" htmlFor="password">Password</label>
                             <div className="form-icon-container">
-                                <input value={password} onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)} className="form-control form-icon-input" id="password" type="password" placeholder="Password" /><span className="fas fa-key text-900 fs--1 form-icon" /></div>
+                                <input value={password} onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)} className="form-control form-icon-input py-3" id="password" type="password" placeholder="Password" /><span className="fas fa-key text-900 fs--1 form-icon" /></div>
                         </div>
                         <div className="row flex-between-center mb-7">
                             <div className="col-auto">
