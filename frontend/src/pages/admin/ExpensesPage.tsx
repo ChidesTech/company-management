@@ -2,12 +2,12 @@ import { ChangeEvent, useEffect, useState } from "react"
 import { deleteExpenseApi, getExpensesApi } from "../../api/expenseApi";
 import Footer from "../../components/admin/Footer"
 import AddExpenseModal from "../../components/admin/AddExpenseModal";
-import { IExpenseInterface } from "../../../../interfaces/IExpenseInterface"
+import { IExpenseInterface } from "../../interfaces/IExpenseInterface"
 import UpdateServiceModal from "../../components/admin/UpdateServiceModal";
 import { toast } from "react-toastify";
 import { compareAsc, format } from "date-fns";
 import { getUsersApi } from "../../api/userApi";
-import { IUserInterface } from "../../../../interfaces/IUserInterface";
+import { IUserInterface } from "../../interfaces/IUserInterface";
 import { DateRange } from "react-date-range";
 import { branches } from "../../data";
 

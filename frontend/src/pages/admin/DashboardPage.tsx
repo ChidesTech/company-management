@@ -2,15 +2,15 @@ import { ChangeEvent, useEffect, useState } from "react"
 import {getRecordsApi } from "../../api/recordApi";
 import Footer from "../../components/admin/Footer"
 import AddRecordModal from "../../components/admin/AddRecordModal";
-import { IRecordInterface } from "../../../../interfaces/IRecordInterface"
+import { IRecordInterface } from "../../interfaces/IRecordInterface"
 
 import {  format } from "date-fns";
 import { getUsersApi } from "../../api/userApi";
-import { IUserInterface } from "../../../../interfaces/IUserInterface";
+import { IUserInterface } from "../../interfaces/IUserInterface";
 import { DateRange } from "react-date-range";
 import { branches } from "../../data";
 import { getExpensesApi } from "../../api/expenseApi";
-import { IExpenseInterface } from "../../../../interfaces/IExpenseInterface";
+import { IExpenseInterface } from "../../interfaces/IExpenseInterface";
 
 
 export default function DashboardPage() {

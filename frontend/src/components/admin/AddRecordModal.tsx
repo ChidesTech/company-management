@@ -1,8 +1,8 @@
 import { ChangeEvent, FormEventHandler, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { IServiceInterface } from "../../../../interfaces/IServiceInterface";
-import { IUserInterface } from "../../../../interfaces/IUserInterface";
+import { IServiceInterface } from "../../interfaces/IServiceInterface";
+import { IUserInterface } from "../../interfaces/IUserInterface";
 import { createRecordApi } from "../../api/recordApi";
 import { getServicesApi } from "../../api/serviceApi";
 import { getUsersApi } from "../../api/userApi";

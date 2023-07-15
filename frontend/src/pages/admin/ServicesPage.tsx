@@ -2,7 +2,7 @@ import {useEffect, useState } from "react"
 import { deleteServiceApi, getServicesApi} from "../../api/serviceApi";
 import Footer from "../../components/admin/Footer"
 import AddServiceModal from "../../components/admin/AddServiceModal";
-import { IServiceInterface } from "../../../../interfaces/IServiceInterface"
+import { IServiceInterface } from "../../interfaces/IServiceInterface"
 import UpdateServiceModal from "../../components/admin/UpdateServiceModal";
 import {toast} from "react-toastify";
 

@@ -1,6 +1,6 @@
 import { ChangeEvent, Dispatch, FormEventHandler, MouseEventHandler, SetStateAction, useState } from "react";
 import { toast } from "react-toastify";
-import { IUserInterface } from "../../../../interfaces/IUserInterface";
+import { IUserInterface } from "../../interfaces/IUserInterface";
 import { updateUsersApi } from "../../api/userApi";
 import { branches } from "../../data";
 

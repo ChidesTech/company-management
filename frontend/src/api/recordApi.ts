@@ -1,5 +1,5 @@
 import http from "../http";
-import { IRecordInterface } from "../../../interfaces/IRecordInterface";
+import { IRecordInterface } from "../interfaces/IRecordInterface";
 
 export const createRecordApi = (data : IRecordInterface) => {
   return http.post<IRecordInterface>("/records", data);

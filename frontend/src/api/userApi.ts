@@ -1,5 +1,5 @@
 import http from "../http";
-import { IUserInterface } from "../../../interfaces/IUserInterface";
+import { IUserInterface } from "../interfaces/IUserInterface";
 
 export const createUserApi = (data : IUserInterface) => {
   return http.post<IUserInterface>("/users", data);

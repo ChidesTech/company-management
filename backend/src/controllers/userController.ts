@@ -1,7 +1,7 @@
 import { RequestHandler } from "express";
 import createHttpError from "http-errors";
 import mongoose from "mongoose";
-import { IUserInterface } from "../../../interfaces/IUserInterface";
+import { IUserInterface } from "../../../frontend/src/interfaces/IUserInterface";
 import User from "../models/userModel";
 import bcrypt from "bcryptjs"
 

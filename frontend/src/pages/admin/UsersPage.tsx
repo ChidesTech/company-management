@@ -2,7 +2,7 @@ import { ChangeEvent, useEffect, useState } from "react"
 import { deleteUserApi, getUsersApi } from "../../api/userApi";
 import Footer from "../../components/admin/Footer"
 import AddUserModal from "../../components/admin/AddUserModal";
-import { IUserInterface } from "../../../../interfaces/IUserInterface"
+import { IUserInterface } from "../../interfaces/IUserInterface"
 import { toast } from "react-toastify";
 import UpdateUserModal from "../../components/admin/UpdateUserModal";
 import { branches } from "../../data";

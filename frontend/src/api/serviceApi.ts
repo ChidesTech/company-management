@@ -1,5 +1,5 @@
 import http from "../http";
-import { IServiceInterface } from "../../../interfaces/IServiceInterface";
+import { IServiceInterface } from "../interfaces/IServiceInterface";
 
 export const createServiceApi = (data : IServiceInterface) => {
   return http.post<IServiceInterface>("/services", data);

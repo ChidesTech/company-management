@@ -1,5 +1,5 @@
 import http from "../http";
-import { IExpenseInterface } from "../../../interfaces/IExpenseInterface";
+import { IExpenseInterface } from "../interfaces/IExpenseInterface";
 
 export const createExpenseApi = (data : IExpenseInterface) => {
   return http.post<IExpenseInterface>("/expenses", data);

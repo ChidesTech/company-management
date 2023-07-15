@@ -2,7 +2,7 @@ import { ChangeEvent, Dispatch, FormEventHandler, MouseEventHandler, SetStateAct
 import { Link, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
-import { IServiceInterface } from "../../../../interfaces/IServiceInterface";
+import { IServiceInterface } from "../../interfaces/IServiceInterface";
 import { createServiceApi, updateServicesApi } from "../../api/serviceApi";
 
 interface PropsInterface {
