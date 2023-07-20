@@ -171,12 +171,16 @@ export default function RecordsPage() {
                                     </div>
                                 </div>
                             </div>
+                            {!userInfo.isAdmin &&
+                            
                             <div className="mt-4">
-                                <AddRecordModal
-                                    getRecords={getRecords}
-                                ></AddRecordModal>
-                            </div>
+                            <AddRecordModal
+                                getRecords={getRecords}
+                            ></AddRecordModal>
+                        </div>
 
+                            }
+                           
 
                         </div>
 

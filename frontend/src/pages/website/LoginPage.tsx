@@ -25,7 +25,7 @@ export default function LoginPage() {
 
 
         } catch (error: any) {
-            error.response.data && error.response.data ? setError(error.response.data.error) : setError("An Internal Server Error Occured");
+            error.response && error.response.data ? setError(error.response.data.error) : setError("An Internal Server Error Occured");
 
         }
 

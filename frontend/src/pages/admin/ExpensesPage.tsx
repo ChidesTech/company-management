@@ -177,11 +177,15 @@ export default function ExpensesPage() {
                                     </div>
                                 </div>
                             </div>
+                            {!userInfo.isAdmin &&  
+                            
                             <div className="mt-4">
-                                <AddExpenseModal
-                                    getExpenses={getExpenses}
-                                ></AddExpenseModal>
-                            </div>
+                            <AddExpenseModal
+                                getExpenses={getExpenses}
+                            ></AddExpenseModal>
+                        </div>
+                            }
+                           
 
 
                         </div>

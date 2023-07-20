@@ -39,10 +39,5 @@ export const deleteUserApi = (id : any) => {
 }
 
 export const loginUser = ( data: IUserInterface) => {
-    return http.post<IUserInterface>(`/users/login`, data,
-    {
-        headers: {
-          Authorization: `Bearer ${userInfo.token}`,
-        },
-    });
+    return http.post<IUserInterface>(`/users/login`, data);
 }
