@@ -66,7 +66,7 @@ export const getExpense: RequestHandler = async (req, res, next) => {
     }
 };
 
-export const updateExpense: RequestHandler<expenseParams, unknown, expenseBody, unknown> = async (req, res, next) => {
+export const updateExpense: RequestHandler = async (req, res, next) => {
     const { id } = req.params;
     const { description, price } = req.body;
     try {
@@ -83,7 +83,7 @@ export const updateExpense: RequestHandler<expenseParams, unknown, expenseBody, 
     }
 };
 
-export const deleteExpense: RequestHandler<expenseParams, unknown, unknown, unknown> = async (req, res, next) => {
+export const deleteExpense: RequestHandler = async (req, res, next) => {
     const { id } = req.params;
     try {
         if (!mongoose.isValidObjectId(id)) throw createHttpError(400, "Invalid Record Id");

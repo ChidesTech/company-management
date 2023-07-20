@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from "react"
+import { ChangeEvent, FormEvent, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { loginUser } from "../../api/userApi";
@@ -7,6 +7,8 @@ export default function LoginPage() {
     const [password, setPassword] = useState<string>();
     const [error, setError] = useState<string>();
     const navigate = useNavigate()
+    const userInfo = JSON.parse(localStorage.getItem("userInfo")!)
+
     async function submitHandler(e: FormEvent) {
         e.preventDefault();
         if (!email || !password) {
@@ -17,8 +19,10 @@ export default function LoginPage() {
         try {
             const { data } = await loginUser({ email, password });
             localStorage.setItem("userInfo", JSON.stringify(data));
-            toast.success("Login Successful");
-            navigate("/dashboard");
+            toast.success("Login Successful")
+            navigate("/records")
+            window.location.reload();
+
 
         } catch (error: any) {
             error.response.data && error.response.data ? setError(error.response.data.error) : setError("An Internal Server Error Occured");
@@ -27,6 +31,10 @@ export default function LoginPage() {
 
 
     }
+
+    useEffect(() => {
+      userInfo && navigate("/dashboard")
+    },[])
     return <>
         <div>
             <div className="container">

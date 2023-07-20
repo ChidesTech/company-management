@@ -35,3 +35,15 @@
     top: 4rem;
     z-index: 9;
 }
+
+
+.page-link-active .page-link{
+    background-color: palevioletred !important;
+    color: white !important;
+    border-radius: 6px !important;
+}
+.page-link-active .page-link:hover{
+    background-color: palevioletred !important;
+    color: white !important;
+    border-radius: 6px !important;
+}

@@ -3,6 +3,9 @@ import { toast } from "react-toastify";
 import { IUserInterface } from "../../interfaces/IUserInterface";
 import { updateUsersApi } from "../../api/userApi";
 import { branches } from "../../data";
+import axios from "axios";
+import Compressor from "compressorjs";
+import Swal from "sweetalert2";
 
 interface PropsInterface {
     getUsers: () => Promise<void>,
@@ -13,6 +16,8 @@ interface PropsInterface {
 
 }
 export default function UpdateUserModal(props: PropsInterface) {
+    const [uploadingPhoto, setUploadingPhoto] = useState<boolean>(false);
+    const [uploadedPhoto, setUploadedPhoto] = useState<boolean>(false);
     const [formError, setFormError] = useState<any>("");
 
     const [name, setName] = useState<string | undefined>(props.userToEdit?.name);
@@ -27,6 +32,39 @@ export default function UpdateUserModal(props: PropsInterface) {
     const [username, setUsername] = useState<string | undefined>(props.userToEdit?.username);
     const [password, setPassword] = useState<string | undefined>();
     const [confirmPassword, setConfirmPassword] = useState<string | undefined>();
+
+    function fileInputChangeHandler(e: any) {
+
+        const file = e.target.files[0];
+        new Compressor(file, {
+            quality: 0.6, //  Its not recommended to go below 0.6.
+            success: (compressedResult: any) => {
+                uploadPhoto(compressedResult);
+            },
+        });
+    }
+
+    async function uploadPhoto(file: any) {
+
+        setUploadingPhoto(true)
+        setUploadedPhoto(false)
+        const data = new FormData();
+        data.append("file", file);
+        data.append("upload_preset", "chidespencils");
+        data.append("cloud_name", "chidestech");
+        axios.post("https://api.cloudinary.com/v1_1/chidestech/image/upload", data)
+            .then(response => {
+                setImage(response.data.url);
+                setUploadingPhoto(false);
+                setUploadedPhoto(true)
+            })
+            .catch(error => {
+                Swal.fire("Error", "Failed To Process Image", "error");
+                setUploadingPhoto(false);
+            })
+    }
+
+
 
     const submitHandler: FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault();
@@ -68,11 +106,17 @@ export default function UpdateUserModal(props: PropsInterface) {
                             <div className="row">
                                 <div className="col-xl-12">
                                     <form onSubmit={submitHandler} className="row g-3 mb-6">
-                                        <div className=" col-md-12">
-                                            <div className="form-floating">
-                                                <input value={image} onChange={(e: ChangeEvent<HTMLInputElement>) => setImage(e.target.value)} className="form-control" id="floatingInputGrid" type="text" placeholder="User Cover" /><label htmlFor="floatingInputGrid">Image</label>
-                                            </div>
+                                    <div className="mt-4 text-center">
+                                            {uploadingPhoto && <h2 style={{ fontSize: "1rem" }} className="">
+                                                Processing Image <span style={{ letterSpacing: "7px" }}>...</span>  </h2>}
+                                            {uploadedPhoto && <h2 style={{ fontSize: "1rem" }} className="text-success p-1">
+                                                Done.</h2>}
                                         </div>
+                                        <label className="form-label">Cover Image</label>
+                                        <label style={{ textAlign: "center" }} className="input-group file-upload" >
+                                            <input style={{ display: "none" }} name="cover-photo" onChange={fileInputChangeHandler} type="file" className="form-control pt-5 ps-3" id="customFile" />
+                                            <label style={{ height: "8rem", textAlign: "center", borderStyle: "dashed", borderRadius: "6px", borderColor: "grey", width: "100%" }} className="input-group-text" htmlFor="customFile">Drag And Drop Image Here Or Click To Browse</label>
+                                        </label>
                                         <div className=" col-md-12">
                                             <div className="form-floating">
                                                 <input value={name} onChange={(e: ChangeEvent<HTMLInputElement>) => setName(e.target.value)} className="form-control" id="floatingInputGrid" type="text" placeholder="User Name" /><label htmlFor="floatingInputGrid">Name</label>

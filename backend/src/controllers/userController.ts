@@ -1,10 +1,11 @@
 import { RequestHandler } from "express";
 import createHttpError from "http-errors";
 import mongoose from "mongoose";
-import { IUserInterface } from "../../../frontend/src/interfaces/IUserInterface";
 import User from "../models/userModel";
-import bcrypt from "bcryptjs"
 
+import bcrypt from "bcryptjs"
+import { generateToken } from "../utils/jwt";
+import { IUserInterface } from "../interfaces/IUserInterface";
 
 interface userParams {
     id: string,
@@ -51,7 +52,7 @@ export const getUser: RequestHandler = async (req, res, next) => {
     }
 };
 
-export const updateUser: RequestHandler<userParams, unknown, IUserInterface, unknown> = async (req, res, next) => {
+export const updateUser: RequestHandler = async (req, res, next) => {
     const { id } = req.params;
 
     try {
@@ -68,7 +69,7 @@ export const updateUser: RequestHandler<userParams, unknown, IUserInterface, unk
     }
 };
 
-export const deleteUser: RequestHandler<userParams, unknown, unknown, unknown> = async (req, res, next) => {
+export const deleteUser: RequestHandler = async (req, res, next) => {
     const { id } = req.params;
     try {
         if (!mongoose.isValidObjectId(id)) throw createHttpError(400, "Invalid user Id");
@@ -93,12 +94,20 @@ export const loginUser: RequestHandler<unknown, unknown, LoginBody, unknown> = a
         if (!email || !password) throw createHttpError(400, "Missing Login Credentials")
         const user: IUserInterface | null = await User.findOne({ email: email });
         if (!user) throw createHttpError(401, "Invalid Credentials");
-        if (!bcrypt.compareSync(password, user.password)) throw createHttpError(401, "Invalid Credential")
-        res.status(201).json(user);
+        if (!bcrypt.compareSync(password, user.password)) throw createHttpError(401, "Invalid Credential");
+        res.status(201).json({_id : user._id, username : user.username, image : user.image, branch : user.branch,isAdmin : user.isAdmin,  token : generateToken(user)});
     } catch (error) {
         next(error)
     }
 
+}
+
+export const checkUserToken : RequestHandler = async (req, res, next) => {
+     try {
+          const reason = "Checking User Authentication State"; 
+     } catch (error) {
+        next(error)
+     }
 }
 
 

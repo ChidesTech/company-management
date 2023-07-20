@@ -1,15 +1,17 @@
 import * as userController from "../controllers/userController";
 import express from "express";
+import { isAdmin, isAuth } from "../utils/jwt";
 
 
 const userRoutes = express.Router();
  
 
-userRoutes.get("/", userController.getUsers);
-userRoutes.post("/", userController.createUser);
+userRoutes.get("/", isAuth , userController.getUsers);
+userRoutes.post("/",isAuth, isAdmin, userController.createUser);
 userRoutes.post("/login", userController.loginUser);
-userRoutes.get("/:id", userController.getUser);
-userRoutes.put("/:id", userController.updateUser);
-userRoutes.delete("/:id", userController.deleteUser);
+userRoutes.get("/check/user/token",isAuth, userController.checkUserToken);
+userRoutes.get("/:id",isAuth, userController.getUser);
+userRoutes.put("/:id",isAuth, isAdmin, userController.updateUser);
+userRoutes.delete("/:id",isAuth, isAdmin, userController.deleteUser);
 
 export default userRoutes;

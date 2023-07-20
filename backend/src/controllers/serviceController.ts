@@ -48,7 +48,7 @@ export const getService : RequestHandler =  async(req, res, next) => {
     }
 };
 
-export const updateService : RequestHandler<serviceParams , unknown, serviceBody, unknown> =  async(req, res, next) => {
+export const updateService : RequestHandler =  async(req, res, next) => {
     const {id} = req.params;
     const {title, description , price} = req.body;
     try {
@@ -65,7 +65,7 @@ export const updateService : RequestHandler<serviceParams , unknown, serviceBody
     }
 };
 
-export const deleteService : RequestHandler<serviceParams , unknown, unknown, unknown> =  async(req, res, next) => {
+export const deleteService : RequestHandler =  async(req, res, next) => {
     const {id} = req.params; 
     try {
         if(!mongoose.isValidObjectId(id)) throw createHttpError(400, "Invalid Service Id");

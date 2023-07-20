@@ -1,18 +1,41 @@
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
+import http from "../../http";
+
 
 function Header() {
   const userInfo = JSON.parse(localStorage.getItem("userInfo")!)
   const navigate = useNavigate();
   useEffect(() => {
-    !userInfo && navigate("/")
-  })
+    !userInfo && navigate("/");
+  });
 
-  function logOut() {
+  function logOut(type : string) {
     localStorage.removeItem("userInfo");
-    toast.success("Sign Out Successful");
+     navigate("/")
+      type !== "expiration" && Swal.fire("Done", "Sign Out Successful", "success");
   }
+
+
+  async function getUserToken() {
+    try {
+      const { data } = await http.get("/users/check/user/token", {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      });
+
+    } catch (error : any) {
+      error.response && error.response.data && error.response.data.error === "Token Is Invalid" && logOut("expiration"); 
+      navigate("/")
+    }
+  }
+
+  useEffect(() => {
+     getUserToken()
+  }, [])
   return (
     <>
       <nav className="navbar navbar-top fixed-top navbar-expand-lg" id="navbarTop">
@@ -78,7 +101,7 @@ function Header() {
                   </ul>
                 </div>
                 <hr />
-                <div className="px-2"> <a onClick={logOut} className="btn btn-phoenix-secondary d-flex flex-center w-100 mb-3" href="/"> <span className="me-2" data-feather="log-out"> </span>Sign out</a>
+                <div className="px-2"> <a onClick={()=>logOut("clicked")} className="btn btn-phoenix-secondary d-flex flex-center w-100 mb-3" href="/"> <span className="me-2" data-feather="log-out"> </span>Sign out</a>
                 </div>
               </div>
             </div>

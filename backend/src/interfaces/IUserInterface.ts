@@ -12,5 +12,6 @@ export interface IUserInterface{
     updatedAt? : string,
     email? : string,
     password? : any,
-    username? : string
+    username? : string,
+    isAdmin? : boolean
 }

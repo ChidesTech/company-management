@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
         createdAt : {type : String},
         updatedAt : {type : String},
         email : {type : String},
-        password : {type : String},
+        password : {type : String },
         username : {type : String},
         isAdmin : {type : Boolean , default : false},
         branch : {type : String}

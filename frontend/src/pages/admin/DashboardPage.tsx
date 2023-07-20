@@ -12,7 +12,6 @@ import { branches } from "../../data";
 import { getExpensesApi } from "../../api/expenseApi";
 import { IExpenseInterface } from "../../interfaces/IExpenseInterface";
 
-
 export default function DashboardPage() {
     const userInfo = JSON.parse(localStorage.getItem("userInfo")!)
 
@@ -233,7 +232,7 @@ export default function DashboardPage() {
 
 
 
-
+        
 
             <Footer></Footer>
         </div >
